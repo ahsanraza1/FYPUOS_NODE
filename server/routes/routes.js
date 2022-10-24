@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { signup, login, isAuth } from '../controllers/auth.js';
+import { signup, login, isAuth, sendMessage, getAllMessages } from '../controllers/auth.js';
 
 const router = express.Router();
 
@@ -9,6 +9,10 @@ router.post('/login', login);
 router.post('/signup', signup);
 
 router.get('/private', isAuth);
+
+router.post('/sendMessage', sendMessage);
+
+router.get('/allMessages', getAllMessages);
 
 router.get('/public', (req, res, next) => {
     res.status(200).json({ message: "here is your public resource" });
